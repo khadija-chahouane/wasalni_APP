@@ -29,7 +29,7 @@ form {
 /* ===== Titres ===== */
 h1 {
     text-align: center;
-    color: #1d4ed8;
+    color: #d81d90;
     margin-bottom: 28px;
     font-size: 28px;
 }
@@ -57,7 +57,7 @@ select {
 
 input:focus,
 select:focus {
-    border-color: #2563eb;
+    border-color: #eb25c0;
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 
