@@ -1,27 +1,30 @@
 <?php
+session_start();
+
 require_once __DIR__ . "/../config/database.php";
 
-$depart = $_GET['depart'] ?? '';
-$arrivee = $_GET['arrivee'] ?? '';
+$depart = trim($_GET['depart'] ?? '');
+$arrivee = trim($_GET['arrivee'] ?? '');
 
-$sql = "SELECT * FROM vehicles
-        WHERE disponible = 1";
+$vehicules = [];
+$rechercheEffectuee = false;
 
-$params = [];
+// Vérifier si une recherche a été effectuée
+if ($depart !== '' && $arrivee !== '') {
 
-if ($depart !== '') {
-    $sql .= " AND ville_depart = ?";
-    $params[] = $depart;
+    $rechercheEffectuee = true;
+
+    $sql = "SELECT * FROM vehicles
+            WHERE disponible = 1
+            AND ville_depart = ?
+            AND ville_arrivee = ?";
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->execute([$depart, $arrivee]);
+
+    $vehicules = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
-if ($arrivee !== '') {
-    $sql .= " AND ville_arrivee = ?";
-    $params[] = $arrivee;
-}
-
-$stmt = $pdo->prepare($sql);
-$stmt->execute($params);
-$vehicules = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +40,7 @@ $vehicules = $stmt->fetchAll();
 <div class="container">
     <h1>Recherche des voyages</h1>
 
-    <form method="GET" action="recherche.php">
+    <form method="GET" action="recherchVehic.php">
         <label>Ville de départ</label>
         <input type="text" name="depart"
                value="<?= htmlspecialchars($depart) ?>"
@@ -50,36 +53,45 @@ $vehicules = $stmt->fetchAll();
 
         <button type="submit">Rechercher</button>
     </form>
-<?php 
-    session_start();
-    require_once "database.php";
-
-    if (isset($_SESSION['user_id']))
-        ?>
     <h2>Véhicules disponibles</h2>
 
-    <?php if (count($vehicules) > 0): ?>
-        <?php foreach ($vehicules as $v): ?>
-            <div class="vehicle">
-                <h3>
-                    <?= htmlspecialchars($v['marque']) ?>
-                    <?= htmlspecialchars($v['modele']) ?>
-                </h3>
+    <?php if (!$rechercheEffectuee): ?>
 
-                <p>Départ : <?= htmlspecialchars($v['ville_depart']) ?></p>
-                <p>Arrivée : <?= htmlspecialchars($v['ville_arrivee']) ?></p>
-                <p>Places : <?= (int)$v['places'] ?></p>
-                <p>Prix : <?= number_format($v['prix'], 2) ?> DH</p>
+    <p>Veuillez rechercher un voyage pour afficher les véhicules.</p>
 
-                <a class="btn"
-                   href="reservation.php?vehicle_id=<?= (int)$v['id'] ?>">
-                    Réserver
-                </a>
-            </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>Aucun véhicule disponible pour ce trajet.</p>
-    <?php endif; ?>
+<?php elseif (count($vehicules) > 0): ?>
+
+    <?php foreach ($vehicules as $v): ?>
+
+        <div class="vehicle">
+
+            <h3>
+                <?= htmlspecialchars($v['marque']) ?>
+                <?= htmlspecialchars($v['modele']) ?>
+            </h3>
+
+            <p>Départ : <?= htmlspecialchars($v['ville_depart']) ?></p>
+
+            <p>Arrivée : <?= htmlspecialchars($v['ville_arrivee']) ?></p>
+
+            <p>Places : <?= (int)$v['places'] ?></p>
+
+            <p>Prix : <?= number_format($v['prix'], 2) ?> DH</p>
+
+            <a class="btn"
+               href="reservation.php?vehicle_id=<?= (int)$v['id'] ?>">
+                Réserver
+            </a>
+
+        </div>
+
+    <?php endforeach; ?>
+
+<?php else: ?>
+
+    <p>Aucun véhicule disponible pour ce trajet.</p>
+
+<?php endif; ?>
 </div>
     
 
