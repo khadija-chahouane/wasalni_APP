@@ -45,10 +45,14 @@ $retour = $_SESSION["role"] === "chauffeur" ? "chauffeur/commandes.php" : "clien
 
     <div id="messages" class="messages"></div>
 
-    <div class="send">
-        <input type="text" id="contenu" maxlength="1000" placeholder="Votre message…" autocomplete="off">
-        <button type="button" id="envoyer">Envoyer</button>
-    </div>
+   <div class="send">
+    <textarea id="contenu"
+              maxlength="1000"
+              placeholder="Votre message..."
+              rows="2"></textarea>
+
+    <button type="button" id="envoyer">Envoyer</button>
+</div>
 </main>
 
 <script>

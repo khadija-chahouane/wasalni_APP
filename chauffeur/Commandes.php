@@ -33,7 +33,7 @@ $traitees  = array_filter($commandes, fn($c) => $c["statut"] !== "en_attente");
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/sprint3.css">
 </head>
-<body>
+<body class="chauffeur-commandes">
 <header class="topbar">
     <a href="dashboard.php">← Tableau de bord</a>
     <div class="notif" id="notif-box" data-api="../API/notifications.php">

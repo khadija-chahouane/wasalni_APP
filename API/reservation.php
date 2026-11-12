@@ -5,7 +5,11 @@ session_start();
 require_once __DIR__ . "/../config/database.php";
 
 // Vérifier la connexion
-if (!isset($_SESSION["user_id"])) {
+if (
+    !isset($_SESSION["user_id"]) ||
+    !isset($_SESSION["role"]) ||
+    $_SESSION["role"] !== "client"
+) {
     header("Location: ../connexion.php");
     exit;
 }

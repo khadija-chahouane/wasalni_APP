@@ -21,5 +21,559 @@
 .msg small { display:block; font-size:.7rem; opacity:.6; margin-top:2px; }
 .mine { align-self:flex-end; background:#2563eb; color:#fff; }
 .theirs { align-self:flex-start; background:#e5e7eb; }
-.send { display:flex; gap:8px; margin-top:10px; }
-.send input { flex:1; padding:10px; border:1px solid #d1d5db; border-radius:8px; }
+.send {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.send textarea {
+    flex: 1;
+    min-width: 0;
+    min-height: 48px;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.send button {
+    width: 110px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+/* ===== CHAUFFEUR DASHBOARD ===== */
+
+.chauffeur-dashboard {
+    margin: 0;
+    min-height: 100vh;
+    background: #f3f6fc;
+    font-family: Arial, sans-serif;
+    color: #172b4d;
+}
+
+/* Navbar */
+
+.chauffeur-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 6%;
+    background: white;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+.chauffeur-nav .brand {
+    font-size: 25px;
+    font-weight: bold;
+    color: #174ea6;
+    text-decoration: none;
+}
+
+.chauffeur-nav .brand span {
+    background: #2563eb;
+    color: white;
+    padding: 7px 12px;
+    border-radius: 10px;
+}
+
+.logout-btn {
+    background: #fff;
+    color: #2563eb;
+    border: 1px solid #2563eb;
+    padding: 10px 20px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #2563eb;
+    color: white;
+}
+
+/* Main content */
+
+.chauffeur-content {
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 20px;
+}
+
+/* Welcome card */
+
+.welcome-card {
+    background: white;
+    padding: 50px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(30, 64, 175, 0.08);
+}
+
+.welcome-icon {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.welcome-card h1 {
+    color: #174ea6;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.welcome-card p {
+    font-size: 17px;
+    color: #52627a;
+}
+
+.welcome-card strong {
+    color: #2563eb;
+}
+
+.welcome-description {
+    margin: 20px 0 30px;
+    line-height: 1.7;
+}
+
+/* Command button */
+
+.command-btn {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.command-btn:hover {
+    background: #174ea6;
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+    .chauffeur-content {
+        margin: 40px auto;
+    }
+
+    .welcome-card {
+        padding: 35px 18px;
+    }
+
+    .welcome-card h1 {
+        font-size: 23px;
+    }
+
+    .chauffeur-nav {
+        padding: 15px;
+    }
+}
+/* ===== CHAUFFEUR DASHBOARD LAYOUT ===== */
+
+body.chauffeur-dashboard {
+    display: block !important;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #f3f6fc;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.chauffeur-nav {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    max-width: none;
+    min-height: 75px;
+    box-sizing: border-box;
+
+    padding: 15px 6%;
+    margin: 0;
+    background: white;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+}
+
+.chauffeur-nav .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #174ea6;
+    text-decoration: none;
+}
+
+.logout-btn {
+    margin-left: auto;
+}
+
+/* Main */
+.chauffeur-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    max-width: 1100px;
+    min-height: 75vh;
+    box-sizing: border-box;
+
+    margin: 30px auto;
+    padding: 25px;
+}
+
+/* Welcome Card */
+.welcome-card {
+    width: 100%;
+    max-width: 750px;
+    box-sizing: border-box;
+
+    padding: 55px 40px;
+    background: white;
+    border-radius: 22px;
+
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(37,99,235,0.08);
+}
+
+.welcome-icon {
+    font-size: 65px;
+    margin-bottom: 20px;
+}
+
+.welcome-card h1 {
+    color: #174ea6;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.welcome-card p {
+    color: #64748b;
+    line-height: 1.7;
+}
+
+.command-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 16px 30px;
+
+    background: #2563eb;
+    color: white;
+    border-radius: 10px;
+
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.command-btn:hover {
+    background: #174ea6;
+    transform: translateY(-3px);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .chauffeur-nav {
+        padding: 15px 20px;
+    }
+
+    .chauffeur-nav .brand {
+        font-size: 20px;
+    }
+
+    .welcome-card {
+        padding: 35px 20px;
+    }
+
+    .welcome-card h1 {
+        font-size: 23px;
+    }
+}
+/* =================================
+   WASALNII - CHAUFFEUR COMMANDES
+================================= */
+
+body.chauffeur-commandes {
+    display: block !important;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: #f3f6fc;
+    color: #172b4d;
+    font-family: Arial, sans-serif;
+}
+
+/* NAVBAR */
+
+.chauffeur-commandes .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 18px 6%;
+    background: white;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+}
+
+.chauffeur-commandes .topbar > a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/* NOTIFICATIONS */
+
+.chauffeur-commandes .notif button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* MAIN CONTAINER */
+
+.chauffeur-commandes .container {
+    width: 90%;
+    max-width: 900px;
+    margin: 45px auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.chauffeur-commandes h1 {
+    text-align: center;
+    color: #174ea6;
+    font-size: 32px;
+    margin-bottom: 35px;
+}
+
+.chauffeur-commandes h2 {
+    color: #174ea6;
+    font-size: 23px;
+}
+
+/* RESERVATION CARD */
+
+.chauffeur-commandes .card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 22px;
+    box-shadow: 0 5px 20px rgba(30,64,175,0.06);
+    transition: 0.3s;
+}
+
+.chauffeur-commandes .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 25px rgba(30,64,175,0.10);
+}
+
+.chauffeur-commandes .card h2 {
+    margin: 0 0 12px;
+}
+
+.chauffeur-commandes .card p {
+    line-height: 1.8;
+    color: #475569;
+}
+
+/* CLIENT INFORMATION */
+
+.chauffeur-commandes .client-info {
+    background: #f1f5f9;
+    padding: 14px;
+    border-radius: 10px;
+    margin: 15px 0;
+    line-height: 1.7;
+    color: #334155;
+}
+
+/* ACTION BUTTONS */
+
+.chauffeur-commandes .actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.chauffeur-commandes .btn-accept,
+.chauffeur-commandes .btn-refuse {
+    flex: 1;
+    border: none;
+    border-radius: 9px;
+    padding: 13px 20px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.chauffeur-commandes .btn-accept {
+    background: #16a34a;
+}
+
+.chauffeur-commandes .btn-accept:hover {
+    background: #15803d;
+}
+
+.chauffeur-commandes .btn-refuse {
+    background: #dc2626;
+}
+
+.chauffeur-commandes .btn-refuse:hover {
+    background: #b91c1c;
+}
+
+/* TREATED COMMANDS */
+
+.chauffeur-commandes .card-done {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 22px;
+}
+
+.chauffeur-commandes .badge {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.chauffeur-commandes .badge-acceptee {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.chauffeur-commandes .badge-refusee {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* MESSAGE BUTTON */
+
+.chauffeur-commandes .btn-chat {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.chauffeur-commandes .btn-chat:hover {
+    background: #174ea6;
+}
+
+/* EMPTY MESSAGE */
+
+.chauffeur-commandes .empty {
+    background: white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+    color: #64748b;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .chauffeur-commandes .container {
+        width: 94%;
+        margin: 25px auto;
+    }
+
+    .chauffeur-commandes h1 {
+        font-size: 25px;
+    }
+
+    .chauffeur-commandes .card {
+        padding: 18px;
+    }
+
+    .chauffeur-commandes .actions {
+        flex-direction: column;
+    }
+
+    .chauffeur-commandes .card-done {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+.client-dashboard {
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 40px;
+    background: white;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+}
+
+.client-dashboard h1 {
+    color: #164eaa;
+    margin-bottom: 20px;
+}
+
+.client-dashboard p {
+    color: #64748b;
+    font-size: 17px;
+}
+
+.client-actions {
+    margin-top: 40px;
+}
+
+.client-actions h2 {
+    color: #164eaa;
+    margin-bottom: 25px;
+}
+
+.btn-client {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    padding: 14px 25px;
+    border-radius: 10px;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.btn-client:hover {
+    background: #164eaa;
+}
