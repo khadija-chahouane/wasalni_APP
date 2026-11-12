@@ -15,5 +15,6 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] !== "chauffeur") {
 <body>
     <h1>Bienvenue dans votre espace chauffeur !</h1>
     <p>Bonjour, <?= htmlspecialchars($_SESSION["full_name"]) ?></p>
+    <p><a href="commandes.php"> Nouvelles commandes</a></p>
 </body>
 </html>

@@ -1,5 +1,4 @@
 <?php
-// Page de messagerie commune au client et au chauffeur (à placer à la racine)
 session_start();
 require_once __DIR__ . "/config/database.php";
 
@@ -11,7 +10,8 @@ $uid = (int)$_SESSION["user_id"];
 $rid = (int)($_GET["reservation"] ?? 0);
 
 $stmt = $pdo->prepare(
-    "SELECT r.*, v.chauffeur_id, v.ville_depart, v.ville_arrivee, c.full_name AS client_nom, d.full_name AS chauffeur_nom
+    "SELECT r.*, v.chauffeur_id, v.ville_depart, v.ville_arrivee,
+            c.full_name AS client_nom, d.full_name AS chauffeur_nom
      FROM reservations r
      JOIN vehicles v ON v.id = r.vehicle_id
      JOIN users c ON c.id = r.user_id
@@ -64,7 +64,7 @@ async function charger() {
     data.messages.forEach(m => {
         const div = document.createElement("div");
         div.className = "msg " + (Number(m.sender_id) === data.me ? "mine" : "theirs");
-        div.textContent = m.contenu;              // textContent : protège contre le XSS
+        div.textContent = m.contenu;
         const t = document.createElement("small");
         t.textContent = m.created_at;
         div.appendChild(t);
